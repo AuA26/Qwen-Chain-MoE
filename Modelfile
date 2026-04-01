@@ -1,0 +1,19 @@
+FROM qwen3:0.6b
+
+#  Ollama 支持的合法参数，删除了不兼容的 max_tokens
+PARAMETER temperature 0.0
+PARAMETER top_p 0.1
+PARAMETER stop "<|endoftext|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "\n"
+
+SYSTEM """
+你是任务分类模型。
+只输出一个分类标签，不解释、不回答、不补充、不换行。
+只能从以下5个标签中选择一个输出：
+normal
+long_text
+code
+math
+vl
+"""
